@@ -29,7 +29,7 @@ text = 'Summarize the following caption of youtube video in sufficient detail wi
 for i in result:
     text += i['text'] + ' '
 
-print(text)
+
 
 def getResult(text):
   llm = OpenAI(temperature=0)
@@ -39,7 +39,10 @@ def getResult(text):
   final_res = chain.run(docs)
   return final_res
 
-st.write('Here you go: ', getResult(text))
+with st.spinner('Wait for it...'):
+    ans = getResult(text)
+
+st.success(ans)
 
 
 
