@@ -32,7 +32,7 @@ for i in result:
     text += i['text'] + ' '
 
 
-
+@st.cache_data
 def getResult(text):
   llm = OpenAI(temperature=0)
 
@@ -41,9 +41,7 @@ def getResult(text):
   final_res = chain.run(docs)
   return final_res
 
-with st.spinner('Wait for it...'):
-    ans = getResult(text)
-
+ans = getResult(text)
 st.success(ans)
 
 
