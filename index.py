@@ -20,8 +20,10 @@ title = requests.get(youtubeGetRequstUrl).json()['items'][0]['snippet']['title']
 
 st.text(title)
 
+transcripts = YouTubeTranscriptApi.list_transcripts(youtube_video_id)
+languages = [t.language_code for t in transcripts]
 
-result = YouTubeTranscriptApi.get_transcript(youtube_video_id)
+result = YouTubeTranscriptApi.get_transcript(youtube_video_id, languages)
 
 text = 'Summarize the following caption of youtube video in sufficient detail with title: ' + title + ' and captions: '
 
